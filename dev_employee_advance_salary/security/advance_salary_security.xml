@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_department_manager" model="res.groups">
+        <field name="name">Department Manager</field>
+        <field name="comment">Department Manager</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+      </record>
+    
+      <record id="group_emp_requst_own_detail" model="ir.rule">
+        <field name="name">View Own Advance Salary</field>
+        <field ref="model_dev_advance_salary" name="model_id"/>
+        <field name="domain_force">['|',('employee_id.user_id','=',user.id),('employee_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    
+    <record id="group_emp_manager_view_all_detail" model="ir.rule">
+        <field name="name">View All Request Advace Salary</field>
+        <field ref="model_dev_advance_salary" name="model_id"/>
+        <field name="domain_force">['|',('manager_id.user_id','=',user.id),('manager_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    
+    <record id="group_officer_requst_all_detail" model="ir.rule">
+        <field name="name">View All Advance Salary</field>
+        <field ref="model_dev_advance_salary" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('hr_payroll.group_hr_payroll_user'))]"/>
+    </record>
+    
+    <record id="group_manager_view_all_request_detail" model="ir.rule">
+        <field name="name">View All Advance Salary Request</field>
+        <field ref="model_dev_advance_salary" name="model_id"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('hr_payroll.group_hr_payroll_manager'))]"/>
+    </record>
+    
+    
+    
+    
+</odoo>

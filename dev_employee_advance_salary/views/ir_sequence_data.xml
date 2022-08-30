@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequences for dev.advance.salary -->
+        <record id="seq_dev_adv_salary" model="ir.sequence">
+            <field name="name">Advance Salary</field>
+            <field name="code">dev.advance.salary</field>
+            <field name="prefix">ADV/SAL/</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

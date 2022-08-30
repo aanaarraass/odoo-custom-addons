@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="dev_advanced_salary_report">  
+		<t t-call="web.external_layout">
+			<t t-foreach="docs" t-as="o">  	
+				<div class="page" style="font-size:17px">
+				    <br/><br/><br/>
+					<h3><strong><span t-field="o.name"/></strong></h3>
+					<div class="row" style="font-size:13px">
+						<div class="col-6">
+							<table width="100%">
+								<tr>
+									<td style="padding:2px" width="25%"><strong>Employee</strong></td>
+									<td style="padding:2px" width="10%">:</td>
+									<td style="padding:2px" width="65%"><span t-field="o.employee_id.name"/></td>
+								</tr>
+								<tr>
+									<td style="padding:2px"><strong>Job Title</strong></td>
+									<td style="padding:2px">:</td>
+									<td style="padding:2px"><span t-field="o.employee_id.job_id.name"/></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-6">
+							<table width="100%">
+								<tr>
+									<td style="padding:2px" width="25%"><strong>Department</strong></td>
+									<td style="padding:2px" width="10%">:</td>
+									<td style="padding:2px" width="65%"><span t-field="o.dept_id.name"/></td>
+								</tr>
+								<tr>
+									<td style="padding:2px"><strong>Manager</strong></td>
+									<td style="padding:2px">:</td>
+									<td style="padding:2px"><span t-field="o.manager_id.name"/></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<hr style="border-top: 1px solid;"/>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~new row~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+				<div class="row" style="font-size:13px">
+						<div class="col-6">
+							<table width="100%">
+								<tr>
+									<td width="35%" style="padding:2px"><strong>Request Date</strong></td>
+									<td width="10%" style="padding:2px">:</td>
+									<td width="55%" style="padding:2px"><span t-field="o.date" t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/></td>
+								</tr>
+								<tr>
+									<td style="padding:2px"><strong>Request Amount</strong></td>
+									<td style="padding:2px">:</td>
+									<td style="padding:2px"> <span t-field="o.amount"
+                                        t-options='{"widget": "monetary", "display_currency": o.employee_id.company_id.currency_id}'/></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-6">
+							<table width="100%" >
+								<tr>
+									<td width="35%" style="padding:2px"><strong>Confirm Date</strong></td>
+									<td width="10%" style="padding:2px">:</td>
+									<td width="55%" style="padding:2px"><span t-field="o.confirm_date" t-field-options="{&quot;format&quot;: &quot;dd/MM/yyyy&quot;}"/></td>
+								</tr>
+								<tr>
+									<td style="padding:2px"><strong>Confirm Manager</strong></td>
+									<td style="padding:2px">:</td>
+									<td style="padding:2px"><span t-field="o.comfirm_manager.name"/></td>
+								</tr>
+								<t t-if="o.paid_amount">
+								    <tr>
+									    <td style="padding:2px"><strong>Paid Amount</strong></td>
+									    <td style="padding:2px">:</td>
+									    <td style="padding:2px"><span t-field="o.paid_amount"
+                                            t-options='{"widget": "monetary", "display_currency": o.employee_id.company_id.currency_id}'/></td>
+								    </tr>
+								</t>
+							</table>
+						</div>
+					</div>
+					<hr style="border-top: 1px solid;"/>
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~new row~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+					<div class="row" style="font-size:13px">
+						<div class="col-12 text-left">
+							<span style="font-size:14px"><strong>Reason:</strong></span>
+							<span t-field="o.reason"/>
+						</div>
+					</div>
+					<hr style="border-top: 1px solid;"/>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~new row~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+					<div class="row" style="font-size:13px">
+						<div class="col-4">
+							<h5><strong>&#160;&#160;Employee</strong></h5>
+							<br/>
+							<span>_________________</span>
+						</div>
+						<div class="col-4">
+							<h5><strong><center>Manager</center></strong></h5>
+							<br/>
+							<span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;_________________</span>
+						</div>
+						<div class="col-4">
+							<h5><strong><center>HR Manager</center></strong></h5>
+							<br/>
+							<span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;_________________</span>
+						</div>
+					</div>
+				</div>
+			</t>
+		</t>
+	</template>
+	 
+	
+	<template id="dev_advanced_salary_template">
+           <t t-call="web.html_container">
+               <t t-foreach="docs" t-as="o">
+                    <t t-call="dev_employee_advance_salary.dev_advanced_salary_report" t-lang="o.name"/>
+                </t>
+           </t>
+       </template>  
+</odoo>
+

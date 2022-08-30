@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="dev_emp_advance_salary_rule" model="hr.salary.rule">
+        <field name="name">Advance Salary</field>
+        <field name="sequence" eval="190"/>
+        <field name="code">ADV/SAL</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = (payslip.advance_salary_id and payslip.advance_salary_id.paid_amount*-1 or 0)</field>
+        <field name="struct_id" ref="hr_payroll.structure_002"/>
+
+    </record>
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="act_hr_employee_advance_salary_list" model="ir.actions.act_window">
+            <field name="res_model">dev.advance.salary</field>
+            <field name="name">Advance Salary</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_employee_id': [active_id], 'default_employee_id': active_id}</field>
+        </record>
+        
+    
+    <record id="dev_hr_employee_inherit_form" model="ir.ui.view">
+         <field name="name">dev.hr.employee.inherite.form</field>
+         <field name="model">hr.employee</field>
+         <field name="inherit_id" ref="hr.view_employee_form"/>
+         <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                        <button name="%(act_hr_employee_advance_salary_list)d"
+                            class="oe_stat_button"
+                            icon="fa-money"
+                            type="action"
+                            groups="hr.group_hr_user" style="width:142px !important;">
+                            <field name="request_count" widget="statinfo" string="Salary Request"/>
+                        </button>
+                    </div>
+            <xpath expr="//page[@name='hr_settings']//group[@name='active_group']" position="after">
+                <group string="Advance Salary" name="adv_salary">
+                    <field name="adv_salary_amount" />
+                    <field name="max_adv_salary"/>
+                </group>
+            </xpath>
+         </field>
+    </record>
+</odoo>

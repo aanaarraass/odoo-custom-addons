@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<report id="dev_advanced_salary_menu_id"
+                    model="dev.advance.salary"
+                    string="Advance Salary"
+                    report_type="qweb-pdf"
+                    name="dev_employee_advance_salary.dev_advanced_salary_template"  
+                    file="dev_employee_advance_salary.dev_advanced_salary_template"
+                    >
+    </report>
+</odoo>
